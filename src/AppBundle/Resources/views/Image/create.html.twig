@@ -1,7 +1,16 @@
 {% extends "::layout.html.twig" %}
 
 {% block title %}AppBundle:Image:create{% endblock %}
-
+{% block css %}
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
-<h1>Welcome to the Image:create page</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file" name="image" class="form-control" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% block javascripts %}{% endblock %}
 {% endblock %}
