@@ -57,11 +57,16 @@ class ImageController extends Controller
             $imagePath = $this->_uploadSearched($request);
             $this->get('session')->set('search_path', $imagePath);
         }
-        $images = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image')->searchByImage($page, $limit, $this->get('session')->get('search_path'));
-        $maxPages = ceil($images->count() / $limit);
-        $thisPage = $page;
-        $images = $images->getIterator();
-        return $this->render('AppBundle:Image:list.html.twig', compact('images', 'maxPages', 'thisPage', 'limit'));
+        $searchPath = $this->get('session')->get('search_path');
+        if ($searchPath) {
+            $images = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image')->searchByImage($page, $limit, $searchPath);
+            $maxPages = ceil($images->count() / $limit);
+            $thisPage = $page;
+            $images = $images->getIterator();
+            return $this->render('AppBundle:Image:list.html.twig', compact('images', 'maxPages', 'thisPage', 'limit'));
+        }
+
+        return $this->redirectToRoute('app_image_imagessearch');
     }
 
     /**
