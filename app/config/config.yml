@@ -8,6 +8,8 @@ imports:
 parameters:
     locale: en
     images_dir: '%kernel.root_dir%/../web/uploads/images'
+    searched_images_dir: '%images_dir%/searched'
+    searched_images_url: '/uploads/images/searched/'
     public_image_path: '/uploads/images'
 framework:
     #esi:             ~

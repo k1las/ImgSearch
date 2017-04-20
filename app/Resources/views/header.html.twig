@@ -2,9 +2,10 @@
 <div class="header clearfix">
     <nav>
         <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="/upload">Upload</a></li>
+            <li role="presentation"><a href="{{ path('app_image_upload') }}">Upload</a></li>
+            <li role="presentation"><a href="{{ path('app_image_imagessearch') }}">Search</a></li>
         </ul>
     </nav>
-    <h3 class="text-muted"><a href="/">Search Images</a></h3>
+    <h3 class="text-muted"><a href="{{ path('app_image_list') }}">Search Images</a></h3>
 </div>
 {% endblock %}

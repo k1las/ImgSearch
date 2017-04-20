@@ -29,14 +29,6 @@ class Image
     private $path;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="blob_data", type="blob")
-     */
-    private $blobData;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -68,30 +60,6 @@ class Image
     public function getPath()
     {
         return $this->path;
-    }
-
-    /**
-     * Set blobData
-     *
-     * @param string $blobData
-     *
-     * @return Image
-     */
-    public function setBlobData($blobData)
-    {
-        $this->blobData = $blobData;
-
-        return $this;
-    }
-
-    /**
-     * Get blobData
-     *
-     * @return string
-     */
-    public function getBlobData()
-    {
-        return $this->blobData;
     }
 }
 

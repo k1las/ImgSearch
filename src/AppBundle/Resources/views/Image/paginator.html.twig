@@ -1,0 +1,25 @@
+{% block paginator %}
+    {% if maxPages > 1 %}
+        {% set route = app.request.get('_route') %}
+        <div class="text-center">
+            <ul class="pagination pagination-sm">
+                {# `«` arrow  #}
+                <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                    <a href="{{ path(route, {page: thisPage-1 < 1 ? 1 : thisPage-1, limit: limit}) }}">«</a>
+                </li>
+
+                {# Render each page number #}
+                {% for i in 1..maxPages %}
+                    <li {{ thisPage == i ? 'class="active"' }}>
+                        <a href="{{ path(route, {page: i, limit: limit}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+
+                {# `»` arrow #}
+                <li {{ thisPage == maxPages ? 'class="disabled"' }}>
+                    <a href="{{ path(route, {page: thisPage+1 <= maxPages ? thisPage+1 : thisPage, limit: limit}) }}">»</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

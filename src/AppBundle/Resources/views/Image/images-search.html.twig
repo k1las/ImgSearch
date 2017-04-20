@@ -1,6 +1,6 @@
 {% extends "::layout.html.twig" %}
 
-{% block title %}Upload Image{% endblock %}
+{% block title %}Search Images{% endblock %}
 {% block css %}
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 {% endblock %}
@@ -12,12 +12,12 @@
             </div>
         {% endfor %}
     {% endfor %}
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" action="{{ path('app_image_search') }}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control" accept="image/jpeg, image/png">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    {% block javascripts %}{% endblock %}
+{% block javascripts %}{% endblock %}
 {% endblock %}
