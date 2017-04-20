@@ -9,7 +9,6 @@ class ImagesComparer
 {
     private function mimeType($i)
     {
-        /*returns array with mime type and if its jpg or png. Returns false if it isn't jpg or png*/
         $mime = getimagesize($i);
         $return = array($mime[0], $mime[1]);
 
@@ -27,7 +26,6 @@ class ImagesComparer
 
     private function createImage($i)
     {
-        /*retuns image resource or false if its not jpg or png*/
         $mime = $this->mimeType($i);
 
         if ($mime[2] == 'jpg') {
@@ -41,7 +39,6 @@ class ImagesComparer
 
     private function resizeImage($i, $source)
     {
-        /*resizes the image to a 8x8 squere and returns as image resource*/
         $mime = $this->mimeType($source);
 
         $t = imagecreatetruecolor(8, 8);
@@ -55,7 +52,6 @@ class ImagesComparer
 
     private function colorMeanValue($i)
     {
-        /*returns the mean value of the colors and the list of all pixel's colors*/
         $colorList = array();
         $colorSum = 0;
         for ($a = 0; $a < 8; $a++) {
@@ -75,7 +71,6 @@ class ImagesComparer
 
     private function bits($colorMean)
     {
-        /*returns an array with 1 and zeros. If a color is bigger than the mean value of colors it is 1*/
         $bits = array();
 
         foreach ($colorMean[1] as $color) {
@@ -88,7 +83,6 @@ class ImagesComparer
 
     public function compare($a, $b)
     {
-        /*main function. returns the hammering distance of two images' bit value*/
         $i1 = $this->createImage($a);
         $i2 = $this->createImage($b);
 
