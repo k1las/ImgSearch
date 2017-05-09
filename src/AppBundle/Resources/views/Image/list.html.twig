@@ -18,27 +18,32 @@
         {% endif %}
     {% endfor %}
 
-    {#Modal#}
+    <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="image_form" method="post" enctype="multipart/form-data">
-                        <input type="file" name="image" id="image_upload">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="upload_image">Save changes</button>
+                    <img class="img-responsive" id="modal-image" src="" alt="image">
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var modal = $('#myModal');
+            var modalImage = $('#modal-image');
+
+            $('.img-responsive').click(function (e) {
+                e.preventDefault();
+                modalImage.attr('src', $(this).attr('src'));
+                modal.modal('show');
+            });
+        });
+    </script>
     {% include '@App/Image/paginator.html.twig' %}
 {% endblock %}
 {% block title %}
