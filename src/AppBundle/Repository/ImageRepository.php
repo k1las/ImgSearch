@@ -62,11 +62,14 @@ class ImageRepository extends \Doctrine\ORM\EntityRepository
      * @param int $currentPage
      * @param int $limit
      * @param string $imagePath
-     * @return Paginator
+     * @return Paginator|false
      */
     public function searchByImage($currentPage = 1, $limit = 16, $imagePath)
     {
         $ids = $this->getImagesIds($imagePath);
+        if(empty($ids)){
+            return false;
+        }
         // Create our query
         $queryBuilder = $this->createQueryBuilder('image');
         $query = $queryBuilder
@@ -93,7 +96,7 @@ class ImageRepository extends \Doctrine\ORM\EntityRepository
         $images = $this->findAll();
         foreach ($images as $image) {
             $result = $comparer->compare($_SERVER['DOCUMENT_ROOT'] . $image->getPath(), $imagePath);
-            if ($result <= 27) {
+            if ($result <= 20) {
                 $ids[] = $image->getId();
             }
         }

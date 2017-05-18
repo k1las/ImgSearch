@@ -60,6 +60,9 @@ class ImageController extends Controller
         $searchPath = $this->get('session')->get('search_path');
         if ($searchPath) {
             $images = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image')->searchByImage($page, $limit, $searchPath);
+            if(!$images){
+                return $this->redirectToRoute('app_image_noresults');
+            }
             $maxPages = ceil($images->count() / $limit);
             $thisPage = $page;
             $images = $images->getIterator();
@@ -83,6 +86,14 @@ class ImageController extends Controller
     public function imagesSearchAction()
     {
         return $this->render('@App/Image/images-search.html.twig');
+    }
+
+    /**
+     * @Route("/no-results")
+     */
+    public function noResultsAction()
+    {
+        return $this->render('@App/Image/no-results.html.twig');
     }
 
     /**Upload Searched Image And Return Path
